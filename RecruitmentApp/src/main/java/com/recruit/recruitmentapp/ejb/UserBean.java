@@ -42,9 +42,13 @@ public class UserBean {
     private List<UserDetails> copyUsersToDetails(List<User> users){
         List<UserDetails> detailsList = new ArrayList<>();
         for(User user : users){
-            UserDetails userDetails = new UserDetails(user.getUsername(), 
-                    user.getEmail(), user.getNume(), user.getPrenume(), 
-                    user.getPosition(), user.getTelefon());
+            UserDetails userDetails = new UserDetails(user.getNume(), 
+                    user.getPrenume(),
+                    user.getTelefon(),
+                    user.getEmail(),
+                    user.getPosition(), 
+                    user.getUsername());
+            
             detailsList.add(userDetails);
         }
         return detailsList;

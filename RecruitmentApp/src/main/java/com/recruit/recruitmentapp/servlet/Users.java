@@ -68,7 +68,7 @@ public class Users extends HttpServlet {
         request.setAttribute("activePage", "Users");
         List<UserDetails> users = userBean.getAllUsers();
         request.setAttribute("users", users);
-        request.getRequestDispatcher("/pages/users.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/users.jsp").forward(request, response);
     }
 
     /**
