@@ -5,15 +5,9 @@
  */
 package com.recruit.recruitmentapp.servlet;
 
-import com.recruit.recruitmentapp.common.UserDetails;
-import com.recruit.recruitmentapp.ejb.UserBean;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,14 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author sodel
+ * @author Alex
  */
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"UserEditor"}))
-@WebServlet(name = "Users", urlPatterns = {"/Users"})
-public class Users extends HttpServlet {
-    
-    @Inject
-    private UserBean userBean;
+@WebServlet(name = "Logout", urlPatterns = {"/Logout"})
+public class Logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +37,10 @@ public class Users extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Users</title>");            
+            out.println("<title>Servlet Logout</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Users at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Logout at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,10 +58,9 @@ public class Users extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("activePage", "Users");
-        List<UserDetails> users = userBean.getAllUsers();
-        request.setAttribute("users", users);
-        request.getRequestDispatcher("/WEB-INF/pages/users.jsp").forward(request, response);
+        request.logout();
+        request.getSession().invalidate();
+        response.sendRedirect(request.getContextPath());
     }
 
     /**
