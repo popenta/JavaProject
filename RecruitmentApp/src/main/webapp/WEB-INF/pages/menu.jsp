@@ -16,9 +16,16 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/Users">Users</a>
                 </li>   
                 </c:if>
-                <c:if test="${pageContext.request.isUserInRole('CommentEditor')}">
-                <li class="nav-item ${activePage eq 'Users' ? ' active' : ''}">
-                    <a class="nav-link" href=#>ceva</a>
+                
+                <c:if test="${pageContext.request.isUserInRole('UserEditor')}">
+                <li class="nav-item ${activePage eq 'Candidates' ? ' active' : ''}">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Candidates">Candidates</a>
+                </li>  
+                </c:if>
+                
+                <c:if test="${pageContext.request.isUserInRole('UserEditor')}">
+                <li class="nav-item ${activePage eq 'Positions' ? ' active' : ''}">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
                 </li>  
                 </c:if>
         </ul>

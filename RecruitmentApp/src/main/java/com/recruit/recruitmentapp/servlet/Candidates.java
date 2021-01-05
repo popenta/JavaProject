@@ -5,8 +5,8 @@
  */
 package com.recruit.recruitmentapp.servlet;
 
-import com.recruit.recruitmentapp.common.PositionDetails;
-import com.recruit.recruitmentapp.ejb.PositionBean;
+import com.recruit.recruitmentapp.common.CandidateDetails;
+import com.recruit.recruitmentapp.ejb.CandidateBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author sodel
+ * @author Alex
  */
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {"UserEditor"}))
-@WebServlet(name = "Positions", urlPatterns = {"/Positions"})
-public class Positions extends HttpServlet {
+@WebServlet(name = "Candidates", urlPatterns = {"/Candidates"})
+public class Candidates extends HttpServlet {
     
     @Inject
-    private PositionBean positionBean;
+    private CandidateBean candidateBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +47,10 @@ public class Positions extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Positions</title>");            
+            out.println("<title>Servlet Candidates</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Positions at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Candidates at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,12 +68,10 @@ public class Positions extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("activePage", "Positions");
-        
-        List<PositionDetails> positions = positionBean.getAllPositions();
-        request.setAttribute("positions", positions);
-        
-        request.getRequestDispatcher("/WEB-INF/pages/positions.jsp").forward(request, response);
+         request.setAttribute("activePage", "Candidates");
+        List<CandidateDetails> candidates = candidateBean.getAllCandidates();
+        request.setAttribute("candidates", candidates);
+        request.getRequestDispatcher("/WEB-INF/pages/candidates.jsp").forward(request, response);
     }
 
     /**
