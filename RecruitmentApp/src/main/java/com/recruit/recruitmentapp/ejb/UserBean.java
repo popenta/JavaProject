@@ -8,6 +8,7 @@ package com.recruit.recruitmentapp.ejb;
 import com.recruit.recruitmentapp.common.UserDetails;
 import com.recruit.recruitmentapp.entity.User;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -43,7 +44,9 @@ public class UserBean {
     private List<UserDetails> copyUsersToDetails(List<User> users){
         List<UserDetails> detailsList = new ArrayList<>();
         for(User user : users){
-            UserDetails userDetails = new UserDetails(user.getNume(), 
+            UserDetails userDetails = new UserDetails(
+                    user.getId(),
+                    user.getNume(), 
                     user.getPrenume(),
                     user.getTelefon(),
                     user.getEmail(),
@@ -66,5 +69,29 @@ public class UserBean {
         user.setPassword(passwordSha256);
  
         em.persist(user);
+    }
+    
+    public UserDetails findById(Integer userId) {
+        User user = em.find(User.class, userId);
+        return new UserDetails (user.getId(), user.getNume(), user.getPrenume(), user.getTelefon(), user.getEmail(), user.getPosition(), user.getUsername());
+    }
+    
+    public void updateUser(Integer userId, String nume, String prenume, String telefon, String email, String position) {
+        LOG.info("updateUser");
+        User user = em.find(User.class, userId);
+        user.setNume(nume);
+        user.setPrenume(prenume);
+        user.setTelefon(telefon);
+        user.setEmail(email);
+        user.setPosition(position);
+        
+    }
+    
+    public void deleteUsersByIds(Collection<Integer> ids) {
+        LOG.info("deleteCarsByIds");
+        for (Integer id : ids) {
+            User user = em.find(User.class, id);
+            em.remove(user);
+        }
     }
 }
