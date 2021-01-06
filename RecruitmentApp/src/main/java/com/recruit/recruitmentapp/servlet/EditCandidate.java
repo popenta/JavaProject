@@ -9,7 +9,6 @@ import com.recruit.recruitmentapp.common.CandidateDetails;
 import com.recruit.recruitmentapp.ejb.CandidateBean;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -22,14 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Alex
+ * @author Leo
  */
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {"UserEditor"}))
-@WebServlet(name = "Candidates", urlPatterns = {"/Candidates"})
-public class Candidates extends HttpServlet {
-
+@WebServlet(name = "EditCandidate", urlPatterns = {"/EditCandidate"})
+public class EditCandidate extends HttpServlet {
     @Inject
-    private CandidateBean candidateBean;
+    CandidateBean candidateBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,10 +46,10 @@ public class Candidates extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Candidates</title>");
+            out.println("<title>Servlet EditCandidate</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Candidates at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditCandidate at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -69,10 +67,13 @@ public class Candidates extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("activePage", "Candidates");
         List<CandidateDetails> candidates = candidateBean.getAllCandidates();
+
         request.setAttribute("candidates", candidates);
-        request.getRequestDispatcher("/WEB-INF/pages/candidates.jsp").forward(request, response);
+        int candidateId = Integer.parseInt(request.getParameter("id"));
+        CandidateDetails candidate = candidateBean.findById(candidateId);
+        request.setAttribute("candidate", candidate);
+        request.getRequestDispatcher("/WEB-INF/pages/editCandidate.jsp").forward(request, response);
     }
 
     /**
@@ -86,14 +87,18 @@ public class Candidates extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] candidateIdsAsString = request.getParameterValues("candidate_ids");
-        if (candidateIdsAsString != null) {
-            List<Integer> candidateIds = new ArrayList<>();
-            for (String candidateIdAsString : candidateIdsAsString) {
-                candidateIds.add(Integer.parseInt(candidateIdAsString));
-            }
-            candidateBean.deleteCandidatesByIds(candidateIds);
-        }
+        String nume = request.getParameter("nume");
+        String prenume = request.getParameter("prenume");
+        String telefon = request.getParameter("telefon");
+        String email = request.getParameter("email");
+        String cv = request.getParameter("cv");
+        String data = request.getParameter("data");
+        String comentariu = request.getParameter("comentariu");
+        
+        int candidateId = Integer.parseInt(request.getParameter("candidate_id"));
+
+        candidateBean.updateCandidate(candidateId, nume, prenume, telefon, email, cv, data, comentariu);
+
         response.sendRedirect(request.getContextPath() + "/Candidates");
     }
 

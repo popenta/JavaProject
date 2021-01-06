@@ -19,7 +19,8 @@ public class CandidateDetails {
     private String data;
     private String comentariu;
 
-    public CandidateDetails(String nume, String prenume, String telefon, String email, String cv, String data, String comentariu) {
+    public CandidateDetails(Integer id, String nume, String prenume, String telefon, String email, String cv, String data, String comentariu) {
+        this.id = id;
         this.nume = nume;
         this.prenume = prenume;
         this.telefon = telefon;
