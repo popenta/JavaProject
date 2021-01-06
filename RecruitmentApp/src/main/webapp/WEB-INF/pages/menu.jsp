@@ -28,6 +28,13 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
                 </li>  
                 </c:if>
+                
+                <c:if test="${pageContext.request.isUserInRole('UserEditor')}">
+                <li class="nav-item ${activePage eq 'AddUser' ? ' active' : ''}">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/AddUser">Add User</a>
+                </li>  
+                </c:if>
+                
         </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">

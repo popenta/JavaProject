@@ -28,6 +28,7 @@ public class UserBean {
     @PersistenceContext
     private EntityManager em;
 
+    
     public List<UserDetails> getAllUsers() {
         LOG.info("getAllUsers");
         try {
@@ -53,4 +54,17 @@ public class UserBean {
         }
         return detailsList;
     } 
+    
+    public void createUser(String nume, String prenume, String telefon, String email, String position, String genUsername,  String passwordSha256){
+        User user = new User();
+        user.setNume(nume);
+        user.setPrenume(prenume);
+        user.setTelefon(telefon);
+        user.setEmail(email);
+        user.setPosition(position);
+        user.setUsername(genUsername);
+        user.setPassword(passwordSha256);
+ 
+        em.persist(user);
+    }
 }
