@@ -22,7 +22,8 @@ public class UserDetails implements Serializable{
     private String username;
     private String password;
 
-    public UserDetails(String nume, String prenume, String telefon, String email, String position, String username) {
+    public UserDetails(Integer id, String nume, String prenume, String telefon, String email, String position, String username) {
+        this.id = id;
         this.nume = nume;
         this.prenume = prenume;
         this.telefon = telefon;
@@ -50,6 +51,10 @@ public class UserDetails implements Serializable{
 
     public String getPosition() {
         return position;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getUsername() {
