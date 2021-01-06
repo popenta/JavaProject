@@ -8,11 +8,11 @@
         <c:forEach var="candidates" items="${candidates}" varStatus="status">
 
             <div class="row">
-
-                <div class="col-md">
-                    <input type="checkbox" name="candidate_ids" value="${candidates.id}"/>
-                </div>
-
+                <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('DirectorHrRol') || pageContext.request.isUserInRole('RecruiterRol')}">
+                    <div class="col-md">
+                        <input type="checkbox" name="candidate_ids" value="${candidates.id}"/>
+                    </div>
+                </c:if>
                 <div class="col-md">
                     ${candidates.nume}
                 </div>
@@ -34,18 +34,18 @@
                 <div class="col-md">
                     ${candidates.comentariu}
                 </div>
-
-                <div class="col-md-2">
-
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditCandidate?id=${candidates.id}" role="button">Edit Candidate</a>
+                <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('DirectorHrRol') || pageContext.request.isUserInRole('RecruiterRol')}">
+                    <div class="col-md-2">
+                        <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditCandidate?id=${candidates.id}" role="button">Edit Candidate</a>
                 </div>
+                </c:if>
 
             </div>
         </c:forEach>
-        <c:if test="${pageContext.request.isUserInRole('UserEditor')}">
+        <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('DirectorHrRol') || pageContext.request.isUserInRole('RecruiterRol')}">
             <a class="btn btn-primary" href="${pageContext.request.contextPath}/AddCandidate" role="button">Add candidate</a>
+            <button class="btn btn-danger" type="submit">Delete selected candidates</button>
         </c:if>
-        <button class="btn btn-danger" type="submit">Delete selected candidates</button>
     </form>
 
 </t:pageTemplate>

@@ -63,9 +63,11 @@
                     <label for="position">Position</label>
                     <select class="custom-select d-block w-100" id="position" name="position" required>
                         <option value="">Choose...</option>
-                        <option value="ADMINISTRATOR">Administrator</option>
-                        <option value="CLIENT">Client</option>
                         <option value="Director General">Director General</option>
+                        <option value="Director Departament">Director Departament</option>
+                        <option value="Director HR">Director HR</option>
+                        <option value="Recruiter">Recruiter</option>
+                        <option value="Admin Aplicatie">Admin Aplicatie</option>                        
                     </select>
                     <div class="invalid-feedback">
                         Please select a position.

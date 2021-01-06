@@ -2,23 +2,27 @@
 <!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN" "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
 <glassfish-web-app error-url="">
   <security-role-mapping>
-    <role-name>UserEditor</role-name>
+    <role-name>DirectorGeneralRol</role-name>
     <group-name>Director General</group-name>
   </security-role-mapping>
   <security-role-mapping>
-    <role-name>PositionEditor</role-name>
-    <group-name>Director General</group-name> 
+    <role-name>DirectorDepRol</role-name>
+    <group-name>Director Departament</group-name>
   </security-role-mapping>
   <security-role-mapping>
-    <role-name>CandidateEditor</role-name>
-    <group-name>Director General</group-name>    
-  </security-role-mapping>
-  <security-role-mapping>
-    <role-name>CommentEditor</role-name>
+    <role-name>DirectorHrRol</role-name>
     <group-name>Director HR</group-name>
   </security-role-mapping>
   <security-role-mapping>
-    <role-name>ViewPosition</role-name>
+    <role-name>RecruiterRol</role-name>
+    <group-name>Recruiter</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>AdminAplicatieRol</role-name>
+    <group-name>Admin Aplicatie</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>ViewerRol</role-name>
     <group-name>Viewer</group-name>
   </security-role-mapping>
   <class-loader delegate="true"/>

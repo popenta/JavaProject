@@ -10,24 +10,24 @@
             <ul class="navbar-nav mr-auto">
 
 
-
-                <c:if test="${pageContext.request.isUserInRole('UserEditor')}">
+                <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('AdminAplicatieRol')}">
                     <li class="nav-item ${activePage eq 'Users' ? ' active' : ''}">
                         <a class="nav-link" href="${pageContext.request.contextPath}/Users">Users</a>
                     </li>   
                 </c:if>
 
-                <c:if test="${pageContext.request.isUserInRole('UserEditor')}">
+                 <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('DirectorHrRol') || pageContext.request.isUserInRole('RecruiterRol')
+                       || pageContext.request.isUserInRole('DirectorDepRol')}">
                     <li class="nav-item ${activePage eq 'Candidates' ? ' active' : ''}">
                         <a class="nav-link" href="${pageContext.request.contextPath}/Candidates">Candidates</a>
                     </li>  
                 </c:if>
 
-                <c:if test="${pageContext.request.isUserInRole('UserEditor')}">
+                 
                     <li class="nav-item ${activePage eq 'Positions' ? ' active' : ''}">
                         <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
                     </li>  
-                </c:if>
+               
 
             </ul>
             <ul class="navbar-nav ml-auto">

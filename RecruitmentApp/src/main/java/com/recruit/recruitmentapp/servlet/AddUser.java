@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alex
  */
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"UserEditor"}))
+
 @WebServlet(name = "AddUser", urlPatterns = {"/AddUser"})
 public class AddUser extends HttpServlet {
 
@@ -100,7 +100,7 @@ public class AddUser extends HttpServlet {
         
         if(nume.length() > 5){
             
-            newUsername = nume.substring(0, 6) + prenume.substring(0, 1);
+            newUsername = nume.substring(0, 5) + prenume.substring(0, 1);
         }else
         {
             newUsername = nume + prenume.substring(0, 1);

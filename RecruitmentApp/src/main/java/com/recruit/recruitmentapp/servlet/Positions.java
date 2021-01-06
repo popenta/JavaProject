@@ -9,7 +9,9 @@ import com.recruit.recruitmentapp.common.PositionDetails;
 import com.recruit.recruitmentapp.ejb.PositionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
@@ -23,7 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sodel
  */
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"UserEditor"}))
+//@DeclareRoles({"DirectorDepRol", "DirectorGeneralRol", "DirectorHrRol", "RecruiterRol", "ViewerRol"})
+//@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"DirectorDepRol", "DirectorGeneralRol", "DirectorHrRol", "RecruiterRol", "ViewerRol"}))
 @WebServlet(name = "Positions", urlPatterns = {"/Positions"})
 public class Positions extends HttpServlet {
     
@@ -87,7 +90,15 @@ public class Positions extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String[] positionIdsAsString = request.getParameterValues("position_ids");
+        if (positionIdsAsString != null) {
+            List<Integer> positionIds = new ArrayList<>();
+            for (String positionIdAsString : positionIdsAsString) {
+                positionIds.add(Integer.parseInt(positionIdAsString));
+            }
+            positionBean.deletePositionsByIds(positionIds);
+        }
+        response.sendRedirect(request.getContextPath() + "/Positions");
     }
 
     /**

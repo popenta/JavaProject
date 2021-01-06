@@ -5,9 +5,12 @@
  */
 package com.recruit.recruitmentapp.ejb;
 
+import com.recruit.recruitmentapp.common.CandidateDetails;
 import com.recruit.recruitmentapp.common.PositionDetails;
+import com.recruit.recruitmentapp.entity.Candidate;
 import com.recruit.recruitmentapp.entity.Position;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -42,7 +45,8 @@ public class PositionBean {
     private List<PositionDetails> copyPositionsToDetails(List<Position> positions){
         List<PositionDetails> detailsList = new ArrayList<>();
         for(Position position : positions){
-            PositionDetails positionDetails = new PositionDetails(position.getNume(), 
+            PositionDetails positionDetails = new PositionDetails(position.getId(),
+                    position.getNume(), 
                     position.getNrPersoane(), 
                     position.getPosOpener(), 
                     position.getDepartament(), 
@@ -53,4 +57,41 @@ public class PositionBean {
         }
         return detailsList;
     }
+    
+    public void createPosition(String nume, Integer nrPersoane, String posOpener, String departament, String cerinte, String responsabilitati) {
+        Position position = new Position();
+        position.setNume(nume);
+        position.setNrPersoane(nrPersoane);
+        position.setPosOpener(posOpener);
+        position.setDepartament(departament);
+        position.setCerinte(cerinte);
+        position.setResponsabilitati(responsabilitati);
+      
+        em.persist(position);
+
+    }
+     public void updatePosition(Integer positionId, String nume, Integer nrPersoane, String posOpener, String departament, String cerinte, String responsabilitati) {
+        LOG.info("updatePosition");
+        Position position = em.find(Position.class, positionId);
+        position.setNume(nume);
+        position.setNrPersoane(nrPersoane);
+        position.setPosOpener(posOpener);
+        position.setDepartament(departament);
+        position.setCerinte(cerinte);
+        position.setResponsabilitati(responsabilitati);
+
+    }
+    
+    public void deletePositionsByIds(Collection<Integer> ids) {
+        LOG.info("deletePositionsByIds");
+        for (Integer id : ids) {
+            Position position = em.find(Position.class, id);
+            em.remove(position);
+        }
+    }
+    public PositionDetails findById(Integer positionId) {
+        Position position = em.find(Position.class, positionId);
+        return new PositionDetails(position.getId(), position.getNume(), position.getNrPersoane(), position.getPosOpener(), position.getDepartament(), position.getCerinte(), position.getResponsabilitati());
+    }
+    
 }
