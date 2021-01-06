@@ -26,7 +26,7 @@
                     ${candidates.telefon}
                 </div>
                 <div class="col-md">
-                    <a href="${candidates.cv}">CV</a> 
+                    <a href="${candidates.cv}" target="_blank">CV</a> 
                 </div>
                 <div class="col-md">
                     ${candidates.data}
@@ -42,6 +42,9 @@
 
             </div>
         </c:forEach>
+        <c:if test="${pageContext.request.isUserInRole('UserEditor')}">
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/AddCandidate" role="button">Add candidate</a>
+        </c:if>
         <button class="btn btn-danger" type="submit">Delete selected candidates</button>
     </form>
 

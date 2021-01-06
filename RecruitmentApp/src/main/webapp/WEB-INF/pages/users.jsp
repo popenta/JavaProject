@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="Users">
+    
     <h1>Users</h1>
 
     <form method="POST" action="${pageContext.request.contextPath}/Users">
@@ -26,6 +27,9 @@
                 </div>
             </div>
         </c:forEach>
+        <c:if test="${pageContext.request.isUserInRole('UserEditor')}">
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/AddUser" role="button">Add user</a>
+        </c:if>
         <button class="btn btn-danger" type="submit">Delete selected users</button>
     </form>
 </t:pageTemplate>
