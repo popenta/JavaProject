@@ -80,7 +80,9 @@
                 <select class="custom-select d-block w-100" id="job" name="job" required>
                     <option value="">Choose...</option>
                     <c:forEach var="positions" items="${positions}" varStatus="status">
-                        <option value="${positions.nume}">${positions.nume}</option>             
+                         <c:if test="${positions.stare eq 'active'}">
+                        <option value="${positions.nume}">${positions.nume}</option>    
+                         </c:if>
                     </c:forEach>
 
                 </select>
