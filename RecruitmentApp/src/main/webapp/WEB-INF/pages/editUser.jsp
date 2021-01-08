@@ -63,9 +63,11 @@
                     <label for="position">Position</label>
                     <select class="custom-select d-block w-100" id="position" name="position" required>
                         <option value="">Choose...</option>
-                        <c:forEach var="user" items="${users}" varStatus="status">
-                            <option value="${user.position}" ${user.username eq user.username ? 'selected' : ''}>${user.position}</option>
-                        </c:forEach>
+                        <option value="Director General">Director General</option>
+                        <option value="Director Departament">Director Departament</option>
+                        <option value="Director HR">Director HR</option>
+                        <option value="Recruiter">Recruiter</option>
+                        <option value="Admin Aplicatie">Admin Aplicatie</option>  
                     </select>
                     <div class="invalid-feedback">
                         Please select a position.

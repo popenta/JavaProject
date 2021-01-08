@@ -33,6 +33,15 @@ public class Candidate implements Serializable {
     private String cv;
     private String data;
     private String comentariu;
+    private String job;
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
 
     public String getNume() {
         return nume;

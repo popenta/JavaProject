@@ -52,14 +52,16 @@ public class CandidateBean {
                     candidate.getEmail(),
                     candidate.getCv(),
                     candidate.getData(),
-                    candidate.getComentariu());
+                    candidate.getComentariu(),
+                    candidate.getJob()
+            );
 
             detailsList.add(candidateDetails);
         }
         return detailsList;
     }
 
-    public void createCandidate(String nume, String prenume, String telefon, String email, String cv, String data, String comentariu) {
+    public void createCandidate(String nume, String prenume, String telefon, String email, String cv, String data, String comentariu, String job) {
         Candidate candidate = new Candidate();
         candidate.setNume(nume);
         candidate.setPrenume(prenume);
@@ -68,6 +70,7 @@ public class CandidateBean {
         candidate.setCv(cv);
         candidate.setData(data);
         candidate.setComentariu(comentariu);
+        candidate.setJob(job);
 
         em.persist(candidate);
 
@@ -75,10 +78,11 @@ public class CandidateBean {
 
     public CandidateDetails findById(Integer candidateId) {
         Candidate candidate = em.find(Candidate.class, candidateId);
-        return new CandidateDetails(candidate.getId(), candidate.getNume(), candidate.getPrenume(), candidate.getTelefon(), candidate.getEmail(), candidate.getCv(), candidate.getData(), candidate.getComentariu());
+        return new CandidateDetails(candidate.getId(), candidate.getNume(), candidate.getPrenume(), candidate.getTelefon(), candidate.getEmail(),
+                candidate.getCv(), candidate.getData(), candidate.getComentariu(), candidate.getJob());
     }
 
-    public void updateCandidate(Integer candidateId, String nume, String prenume, String telefon, String email, String cv, String data, String comentariu) {
+    public void updateCandidate(Integer candidateId, String nume, String prenume, String telefon, String email, String cv, String data, String comentariu, String job) {
         LOG.info("updateCandidate");
         Candidate candidate = em.find(Candidate.class, candidateId);
         candidate.setNume(nume);
@@ -88,9 +92,10 @@ public class CandidateBean {
         candidate.setCv(cv);
         candidate.setData(data);
         candidate.setComentariu(comentariu);
+        candidate.setJob(job);
 
     }
-    
+
     public void deleteCandidatesByIds(Collection<Integer> ids) {
         LOG.info("deleteCandidatesByIds");
         for (Integer id : ids) {

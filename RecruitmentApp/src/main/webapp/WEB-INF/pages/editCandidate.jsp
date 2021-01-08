@@ -76,6 +76,22 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
+                <label for="position">Job</label>            
+                <select class="custom-select d-block w-100" id="position" name="position" required>
+                    <option value="">Choose...</option>
+                    <c:forEach var="positions" items="${positions}" varStatus="status">
+                        <option value="${positions.nume}">${positions.nume}</option>             
+                    </c:forEach>
+
+                </select>
+                <div class="invalid-feedback">
+                    Job is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
                 <label for="comentariu">Comentariu</label>
                 <input type="text" class="form-control" id="comentariu" name="comentariu" placeholder="" value="${candidate.comentariu}" required>
                 <div class="invalid-feedback">

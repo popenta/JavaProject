@@ -5,9 +5,12 @@
  */
 package com.recruit.recruitmentapp.servlet;
 
+import com.recruit.recruitmentapp.common.PositionDetails;
 import com.recruit.recruitmentapp.ejb.CandidateBean;
+import com.recruit.recruitmentapp.ejb.PositionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -28,6 +31,9 @@ public class AddCandidate extends HttpServlet {
 
     @Inject
     CandidateBean candidateBean;
+    
+    @Inject
+    private PositionBean positionBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -67,6 +73,9 @@ public class AddCandidate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        List<PositionDetails> positions = positionBean.getAllPositions();
+        request.setAttribute("positions", positions);
         request.getRequestDispatcher("/WEB-INF/pages/addCandidate.jsp").forward(request, response);
     }
 
@@ -89,8 +98,10 @@ public class AddCandidate extends HttpServlet {
         String cv = request.getParameter("cv");
         String data = request.getParameter("data");
         String comentariu = request.getParameter("comentariu");
+        String job = request.getParameter("job");
+        
 
-        candidateBean.createCandidate(nume, prenume, telefon, email, cv, data, comentariu);
+        candidateBean.createCandidate(nume, prenume, telefon, email, cv, data, comentariu, job);
 
         response.sendRedirect(request.getContextPath() + "/Candidates");
     }

@@ -34,6 +34,9 @@
                 <div class="col-md">
                     ${candidates.comentariu}
                 </div>
+                <div class="col-md">
+                    ${candidates.job}
+                </div>
                 <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('DirectorHrRol') || pageContext.request.isUserInRole('RecruiterRol')}">
                     <div class="col-md-2">
                         <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditCandidate?id=${candidates.id}" role="button">Edit Candidate</a>

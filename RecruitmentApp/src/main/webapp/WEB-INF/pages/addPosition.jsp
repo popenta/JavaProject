@@ -37,9 +37,16 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="departament">Departament</label>
-                <input type="text" class="form-control" id="departament" name="departament" placeholder="" value="" required>
+                <select class="custom-select d-block w-100" id="departament" name="departament" required>
+                    <option value="">Choose...</option>
+                    <option value="GBA">GBA</option>
+                    <option value="GBC">GBC</option>
+                    <option value="MSA">MSA</option>
+                    <option value="MNG">MNG</option>
+
+                </select>
                 <div class="invalid-feedback">
-                    Department is required.
+                    Please select a department.
                 </div>
             </div>
         </div>

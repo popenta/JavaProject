@@ -18,8 +18,9 @@ public class CandidateDetails {
     private String cv;
     private String data;
     private String comentariu;
+    private String job;
 
-    public CandidateDetails(Integer id, String nume, String prenume, String telefon, String email, String cv, String data, String comentariu) {
+    public CandidateDetails(Integer id, String nume, String prenume, String telefon, String email, String cv, String data, String comentariu, String job) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -28,6 +29,11 @@ public class CandidateDetails {
         this.cv = cv;
         this.data = data;
         this.comentariu = comentariu;
+        this.job = job;
+    }
+
+    public String getJob() {
+        return job;
     }
 
     public Integer getId() {
