@@ -20,8 +20,9 @@ public class PositionDetails implements Serializable{
     private String departament;
     private String cerinte;
     private String responsabilitati;
+    private String stare;
     
-    public PositionDetails(Integer id, String nume, Integer nrPersoane, String posOpener, String departament, String cerinte, String responsabilitati) {
+    public PositionDetails(Integer id, String nume, Integer nrPersoane, String posOpener, String departament, String cerinte, String responsabilitati, String stare) {
         this.id = id;
         this.nume = nume;
         this.nrPersoane = nrPersoane;
@@ -29,6 +30,7 @@ public class PositionDetails implements Serializable{
         this.departament = departament;
         this.cerinte = cerinte;
         this.responsabilitati = responsabilitati;
+        this.stare = stare;
     }
 
      public Integer getId() {
@@ -58,5 +60,8 @@ public class PositionDetails implements Serializable{
         return responsabilitati;
     }
 
-    
+    public String getStare() {
+        return stare;
+    }
+
 }

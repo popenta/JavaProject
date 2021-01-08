@@ -30,6 +30,7 @@ public class Position implements Serializable {
     private String departament;
     private String cerinte;
     private String responsabilitati;
+    private String stare;
 
     public String getNume() {
         return nume;
@@ -85,6 +86,14 @@ public class Position implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getStare() {
+        return stare;
+    }
+
+    public void setStare(String stare) {
+        this.stare = stare;
     }
 
     @Override

@@ -58,6 +58,7 @@
                 <div class="col-md-2">
                     ${positions.responsabilitati}
                 </div>
+                
                 <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('DirectorDepRol') || pageContext.request.isUserInRole('DirectorHrRol')
                               || pageContext.request.isUserInRole('RecruiterRol')}">
                       <div class="col-md-2">
@@ -65,6 +66,8 @@
                       </div>
                 </c:if>
             </div>
+                
+                
         </c:forEach>
 
         <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('DirectorDepRol') || pageContext.request.isUserInRole('DirectorHrRol')
@@ -72,5 +75,9 @@
               <a class="btn btn-primary" href="${pageContext.request.contextPath}/AddPosition" role="button">Add position</a> 
               <button class="btn btn-danger" type="submit">Delete selected positions</button>
         </c:if>
+              
+              
+        
+        
     </form>
 </t:pageTemplate>

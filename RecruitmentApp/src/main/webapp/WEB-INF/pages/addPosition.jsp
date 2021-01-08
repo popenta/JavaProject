@@ -36,16 +36,6 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="posOpener">Position opener</label>
-                <input type="text" class="form-control" id="posOpener" name="posOpener" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                    Position Opener is required.
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-3">
                 <label for="departament">Departament</label>
                 <input type="text" class="form-control" id="departament" name="departament" placeholder="" value="" required>
                 <div class="invalid-feedback">

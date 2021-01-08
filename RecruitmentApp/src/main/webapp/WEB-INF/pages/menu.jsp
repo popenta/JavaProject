@@ -22,6 +22,12 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/Candidates">Candidates</a>
                     </li>  
                 </c:if>
+                    
+                 <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol')}">
+                    <li class="nav-item ${activePage eq 'PositionsDG' ? ' active' : ''}">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/PositionsDG">Activate Positions</a>
+                    </li>  
+                </c:if>
 
                  
                     <li class="nav-item ${activePage eq 'Positions' ? ' active' : ''}">

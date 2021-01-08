@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +19,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alex
  */
-
-@WebServlet(name = "AddPosition", urlPatterns = {"/AddPosition"})
-public class AddPosition extends HttpServlet {
-
+@WebServlet(name = "DeclinePosition", urlPatterns = {"/DeclinePosition"})
+public class DeclinePosition extends HttpServlet {
+    
     @Inject
-    PositionBean positionBean;
+    private PositionBean positionBean;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,10 +42,10 @@ public class AddPosition extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddPosition</title>");            
+            out.println("<title>Servlet DeclinePosition</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddPosition at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeclinePosition at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,7 +63,11 @@ public class AddPosition extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/pages/addPosition.jsp").forward(request, response);
+        int positionId = Integer.parseInt(request.getParameter("id"));
+        
+        positionBean.updateStareDeactivate(positionId);
+        
+        response.sendRedirect(request.getContextPath() + "/PositionsDG");
     }
 
     /**
@@ -79,19 +81,7 @@ public class AddPosition extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String nume = request.getParameter("nume");
-        Integer nrPersoane =  Integer.parseInt(request.getParameter("nrPersoane"));
-        String posOpener = request.getRemoteUser();
-        String departament = request.getParameter("departament");
-        String cerinte = request.getParameter("cerinte");
-        String responsabilitati = request.getParameter("responsabilitati");
-        String stare = "inactive";
-        
-
-        positionBean.createPosition(nume, nrPersoane, posOpener, departament, cerinte, responsabilitati, stare);
-
-        response.sendRedirect(request.getContextPath() + "/Positions");
+        processRequest(request, response);
     }
 
     /**

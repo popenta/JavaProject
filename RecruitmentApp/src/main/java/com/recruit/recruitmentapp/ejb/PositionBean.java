@@ -51,14 +51,15 @@ public class PositionBean {
                     position.getPosOpener(), 
                     position.getDepartament(), 
                     position.getCerinte(), 
-                    position.getResponsabilitati());
+                    position.getResponsabilitati(),
+                    position.getStare());
             
             detailsList.add(positionDetails);
         }
         return detailsList;
     }
     
-    public void createPosition(String nume, Integer nrPersoane, String posOpener, String departament, String cerinte, String responsabilitati) {
+    public void createPosition(String nume, Integer nrPersoane, String posOpener, String departament, String cerinte, String responsabilitati, String stare) {
         Position position = new Position();
         position.setNume(nume);
         position.setNrPersoane(nrPersoane);
@@ -66,6 +67,7 @@ public class PositionBean {
         position.setDepartament(departament);
         position.setCerinte(cerinte);
         position.setResponsabilitati(responsabilitati);
+        position.setStare(stare);
       
         em.persist(position);
 
@@ -91,7 +93,36 @@ public class PositionBean {
     }
     public PositionDetails findById(Integer positionId) {
         Position position = em.find(Position.class, positionId);
-        return new PositionDetails(position.getId(), position.getNume(), position.getNrPersoane(), position.getPosOpener(), position.getDepartament(), position.getCerinte(), position.getResponsabilitati());
+        return new PositionDetails(position.getId(),
+                position.getNume(), position.getNrPersoane(),
+                position.getPosOpener(), position.getDepartament(),
+                position.getCerinte(),
+                position.getResponsabilitati(),
+                position.getStare());
+    }
+    
+    public void updateStareActive(Integer id){
+        
+        LOG.info("updateStareActive");
+        Position position = em.find(Position.class, id);
+        
+        position.setStare("active");  
+    }
+    
+    public void updateStareInactive(Integer id){
+        
+        LOG.info("updateStareInactive");
+        Position position = em.find(Position.class, id);
+        
+        position.setStare("inactive");  
+    }
+    
+    public void updateStareDeactivate(Integer id){
+        
+        LOG.info("updateStareDeactivate");
+        Position position = em.find(Position.class, id);
+        
+        position.setStare("declined");
     }
     
 }
