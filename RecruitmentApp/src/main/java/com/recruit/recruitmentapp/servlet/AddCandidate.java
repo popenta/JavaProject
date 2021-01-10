@@ -5,6 +5,7 @@
  */
 package com.recruit.recruitmentapp.servlet;
 
+import com.recruit.recruitmentapp.common.CandidateDetails;
 import com.recruit.recruitmentapp.common.PositionDetails;
 import com.recruit.recruitmentapp.ejb.CandidateBean;
 import com.recruit.recruitmentapp.ejb.PositionBean;
@@ -25,13 +26,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Leo
  */
-
 @WebServlet(name = "AddCandidate", urlPatterns = {"/AddCandidate"})
 public class AddCandidate extends HttpServlet {
 
     @Inject
     CandidateBean candidateBean;
-    
+
     @Inject
     private PositionBean positionBean;
 
@@ -73,7 +73,7 @@ public class AddCandidate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         List<PositionDetails> positions = positionBean.getAllPositions();
         request.setAttribute("positions", positions);
         request.getRequestDispatcher("/WEB-INF/pages/addCandidate.jsp").forward(request, response);
@@ -90,7 +90,7 @@ public class AddCandidate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String nume = request.getParameter("nume");
         String prenume = request.getParameter("prenume");
         String telefon = request.getParameter("telefon");
@@ -99,11 +99,32 @@ public class AddCandidate extends HttpServlet {
         String data = request.getParameter("data");
         String comentariu = request.getParameter("comentariu");
         String job = request.getParameter("job");
-        
+
+        int ctAdd = 0;
+        PositionDetails pd1 = null;
 
         candidateBean.createCandidate(nume, prenume, telefon, email, cv, data, comentariu, job);
 
+        List<PositionDetails> positions = positionBean.getAllPositions();
+        List<CandidateDetails> candidate = candidateBean.getAllCandidates();
+        for (CandidateDetails cd : candidate) {
+            if (cd.getJob().equals(job)) {
+                ctAdd++;
+            }
+        }
+
+        for (PositionDetails pd : positions) {
+            if (pd.getNume().equals(job)) {
+                pd1 = pd;
+            }
+        }
+
+        if (pd1.getNrPersoane() == ctAdd) {
+            positionBean.updateStareDeactivate(pd1.getId());
+        }
+
         response.sendRedirect(request.getContextPath() + "/Candidates");
+
     }
 
     /**

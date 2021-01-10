@@ -93,6 +93,7 @@ public class EditCandidate extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nume = request.getParameter("nume");
@@ -103,10 +104,29 @@ public class EditCandidate extends HttpServlet {
         String data = request.getParameter("data");
         String comentariu = request.getParameter("comentariu");
         String job = request.getParameter("position");
-        
+        int ctEdit=0;
+        PositionDetails pd2=null;
         int candidateId = Integer.parseInt(request.getParameter("candidate_id"));
 
         candidateBean.updateCandidate(candidateId, nume, prenume, telefon, email, cv, data, comentariu, job);
+        
+         List<PositionDetails> positions = positionBean.getAllPositions();
+        List<CandidateDetails> candidate = candidateBean.getAllCandidates();
+        for (CandidateDetails cd : candidate) {
+            if (cd.getJob().equals(job)) {
+                ctEdit++;
+            }
+        }
+
+        for (PositionDetails pd : positions) {
+            if (pd.getNume().equals(job)) {
+                pd2 = pd;
+            }
+        }
+
+        if (pd2.getNrPersoane() == ctEdit) {
+           positionBean.updateStareDeactivate(pd2.getId());
+        }
 
         response.sendRedirect(request.getContextPath() + "/Candidates");
     }

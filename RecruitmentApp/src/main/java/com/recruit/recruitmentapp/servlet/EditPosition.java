@@ -24,12 +24,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alex
  */
-
 @WebServlet(name = "EditPosition", urlPatterns = {"/EditPosition"})
 public class EditPosition extends HttpServlet {
 
     @Inject
     PositionBean positionBean;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,7 +47,7 @@ public class EditPosition extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditPosition</title>");            
+            out.println("<title>Servlet EditPosition</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EditPosition at " + request.getContextPath() + "</h1>");
@@ -69,7 +69,8 @@ public class EditPosition extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<PositionDetails> positions = positionBean.getAllPositions();
-
+        request.setAttribute("loggedUser", request.getRemoteUser());
+         //pageContext.request.getRemoteUser(); 
         request.setAttribute("positions", positions);
         int positionId = Integer.parseInt(request.getParameter("id"));
         PositionDetails position = positionBean.findById(positionId);
@@ -88,8 +89,9 @@ public class EditPosition extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String nume = request.getParameter("nume");
-        Integer nrPersoane =  Integer.parseInt(request.getParameter("nrPersoane"));
+
+        String nume = request.getParameter("nume");
+        Integer nrPersoane = Integer.parseInt(request.getParameter("nrPersoane"));
         String posOpener = request.getParameter("posOpener");
         String departament = request.getParameter("departament");
         String cerinte = request.getParameter("cerinte");

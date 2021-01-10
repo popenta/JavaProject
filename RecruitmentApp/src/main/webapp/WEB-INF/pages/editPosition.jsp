@@ -44,27 +44,45 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="cerinte">Cerinte</label>
-                <input type="text" class="form-control" id="cerinte" name="cerinte" placeholder="" value="${position.cerinte}" required>
-                <div class="invalid-feedback">
-                    This field is required.
+        <c:choose>
+            <c:when test="${loggedUser eq position.posOpener}">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cerinte">Cerinte</label>
+                        <input type="text" class="form-control" id="cerinte" name="cerinte" placeholder="" value="${position.cerinte}" required>
+                        <div class="invalid-feedback">
+                            This field is required.
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="responsabilitati">Responsabilitati</label>
-                <input type="text" class="form-control" id="responsabilitati" name="responsabilitati" placeholder="" value="${position.responsabilitati}" required>
-                <div class="invalid-feedback">
-                    Duties are required.
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="responsabilitati">Responsabilitati</label>
+                        <input type="text" class="form-control" id="responsabilitati" name="responsabilitati" placeholder="" value="${position.responsabilitati}" required>
+                        <div class="invalid-feedback">
+                            Duties are required.
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </c:when>
+            <c:otherwise>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cerinte">Cerinte</label>
+                        <input type="text" class="form-control" id="cerinte" name="cerinte" placeholder="" value="${position.cerinte}" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="responsabilitati">Responsabilitati</label>
+                        <input type="text" class="form-control" id="responsabilitati" name="responsabilitati" placeholder="" value="${position.responsabilitati}" disabled>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
         <input type="hidden" name="position_id" value="${position.id}" />
+        <input type="hidden" name="posOpener" value="${position.posOpener}" />
         <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
     </form>
 
