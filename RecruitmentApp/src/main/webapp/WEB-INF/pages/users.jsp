@@ -3,41 +3,77 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="Users">
-    
-    <h1>Users</h1>
+    <div style="padding:30px; border-radius: 5px; border:1px solid #dedede; margin: 30px auto 0 auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h1 style="text-align: center; padding-bottom: 50px; color: #4B8CA6;">Users</h1>
 
-    <form method="POST" action="${pageContext.request.contextPath}/Users">
-    
-        <c:forEach var="users" items="${users}" varStatus="status">
-            <div class="row">
-                <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('AdminAplicatieRol')}">
+        <form method="POST" action="${pageContext.request.contextPath}/Users">
+
+            <div class="row" style="font-weight: bold; font-size: 110%; margin-bottom: 20px; text-align: center; ">
+                <div class = "col-md">
+
+                </div>
                 <div class="col-md">
-                    <input type="checkbox" name="user_ids" value="${users.id}"/>
+                    Nume
                 </div>
-                </c:if>
-                <div class="col-md-3">
-                    ${users.nume}
+                <div class="col-md">
+                    Prenume
                 </div>
-                <div class="col-md-3">
-                    ${users.email}
-                </div>
-                <div class="col-md-3">
-                    ${users.position}
-                </div>
-                <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('AdminAplicatieRol')}">
                 <div class="col-md-2">
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditUser?id=${users.id}" role="button">Edit User</a>
+                    Email
                 </div>
-                </c:if>
+                <div class="col-md-2">
+                    Telefon
+                </div>
+                <div class="col-md-2">
+                    Pozitie
+                </div>
+                <div class="col-md">
+                    Username
+                </div>
+                <div class = "col-md-2">
+
+                </div>
             </div>
-        </c:forEach>
-        <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('AdminAplicatieRol')}">
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/AddUser" role="button">Add user</a>
-        <button class="btn btn-danger" type="submit">Delete selected users</button>
-        </c:if>
-    </form>
-    
-     <script>
+
+            <c:forEach var="users" items="${users}" varStatus="status">
+                <div class="row" style="margin-bottom: 10px; text-align: center;">
+                    <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('AdminAplicatieRol')}">
+                        <div class="col-md">
+                            <input class="form-check-input" type="radio" name="user_ids" value="${users.id}"/>
+                        </div>
+                    </c:if>
+                    <div class="col-md">
+                        ${users.nume}
+                    </div>
+                    <div class="col-md">
+                        ${users.prenume}
+                    </div>
+                    <div class="col-md-2">
+                        ${users.email}
+                    </div>
+                    <div class="col-md-2">
+                        ${users.telefon}
+                    </div>
+                    <div class="col-md-2">
+                        ${users.position}
+                    </div>
+                    <div class="col-md">
+                        ${users.username}
+                    </div>
+                    <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('AdminAplicatieRol')}">
+                        <div class="col-md-2">
+                            <a class="btn btn-secondary" style="background-color: #1E3859; border:none; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" onMouseOver="this.style.background = '#46658c'" onMouseOut="this.style.background = '#1E3859'" href="${pageContext.request.contextPath}/EditUser?id=${users.id}" role="button">Edit User</a>
+                        </div>
+                    </c:if>
+                </div>
+            </c:forEach>
+            <c:if test="${pageContext.request.isUserInRole('DirectorGeneralRol') || pageContext.request.isUserInRole('AdminAplicatieRol')}">
+                <a class="btn btn-primary" style="background-color: #4B8CA6; border:none; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" onMouseOver="this.style.background = '#A7D9D9'" onMouseOut="this.style.background = '#4B8CA6'" href="${pageContext.request.contextPath}/AddUser" role="button">Add user</a>
+                <button class="btn btn-danger" style="background-color: #D93B58; border:none; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" onMouseOver="this.style.background = '#ff8097'" onMouseOut="this.style.background = '#D93B58'" type="submit">Delete selected users</button>
+            </c:if>
+        </form>
+    </div>
+    <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
             'use strict'

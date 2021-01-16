@@ -10,15 +10,16 @@
             ${message}
         </div>
     </c:if>
-    <form class="form-sigin" method="POST" action="j_security_check">
-        <h1 class="h3 mb-3 font-wight-normal">Sign in</h1>
-        <label for="username" class="sr-only">Username</label>
-        <input type="text" id="username" name="j_username" class="form-control" placeholder="Username" required autofocus />
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="j_password" class="form-control" placeholder="Password" required />
-        <button class="btn btn-lg  btn-primary btn-block" type="submit">Sign in</button>
-    </form>
-    
+    <div style="width: 40%; padding:30px; border-radius: 5px; border:1px solid #dedede; margin: 80px auto 0 auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <form class="form-sigin" method="POST" action="j_security_check">
+            <h1 style="text-align: center; padding-bottom: 70px; color: #4B8CA6;">Login</h1>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="j_username" class="form-control" placeholder="Username" required autofocus />
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" style="margin-bottom: 30px;" name="j_password" class="form-control" placeholder="Password" required />
+            <button class="btn btn-lg btn-primary btn-block" style="background-color: #4B8CA6; border: none; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" onMouseOver="this.style.background='#A7D9D9'" onMouseOut="this.style.background='#4B8CA6'" type="submit">Sign in</button>
+        </form>
+    </div>
      <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {

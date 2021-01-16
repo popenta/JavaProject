@@ -4,65 +4,58 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:pageTemplate pageTitle="Edit User">
-        <h1>Edit User</h1>
-        
+    <div style="width: 40%; padding:30px; border-radius: 5px; border:1px solid #dedede;
+         margin: 30px auto 0 auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h1 style="text-align: center; padding-bottom: 50px; color: #4B8CA6;">Edit User</h1>
+
         <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/EditUser">
-            
+
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="nume">Nume</label>
-                    <input type="text" class="form-control" id="nume" name="nume" placeholder="" value="${user.nume}" required>
+                    <div class="input-group">
+                        <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: none;">Nume</span>
+                        <input type="text" class="form-control" id="nume" name="nume" placeholder="Nume" value="${user.nume}" required>
+                    </div>
                     <div class="invalid-feedback">
                         Name is required.
                     </div>
                 </div>
-            </div>
-            
-            <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="prenume">Prenume</label>
-                    <input type="text" class="form-control" id="prenume" name="prenume" placeholder="" value="${user.prenume}" required>
+                    <div class="input-group">
+                        <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: none;">Prenume</span>
+                        <input type="text" class="form-control" id="prenume" name="prenume" placeholder="Prenume" value="${user.prenume}" required>
+                    </div>
                     <div class="invalid-feedback">
                         First name is required.
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="telefon">Telefon</label>
-                    <input type="text" class="form-control" id="telefon" name="telefon" placeholder="" value="${user.telefon}" required>
+                    <div class="input-group">
+                        <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: none;">Telefon</span>
+                        <input type="text" class="form-control" id="telefon" name="telefon" placeholder="Telefon" value="${user.telefon}" required>
+                    </div>
                     <div class="invalid-feedback">
                         Phone is required.
                     </div>
                 </div>
-            </div>
-            
-            <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="" value="${user.email}" required>
+                    <div class="input-group">
+                        <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: none;">Email</span>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="${user.email}" required>
+                    </div>
                     <div class="invalid-feedback">
                         Email is required.
                     </div>
                 </div>
             </div>
-            
-            <!--<div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        Password is required.
-                    </div>
-                </div>
-            </div>-->
-            
+
             <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="position">Position</label>
+                <div class="col-md-12 mb-3">
                     <select class="custom-select d-block w-100" id="position" name="position" required>
-                        <option value="">Choose...</option>
+                        <option value="">Alegeti pozitie</option>
                         <option value="Director General">Director General</option>
                         <option value="Director Departament">Director Departament</option>
                         <option value="Director HR">Director HR</option>
@@ -75,9 +68,11 @@
                 </div>
             </div>
             <input type="hidden" name="user_id" value="${user.id}" />
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+            <button class="btn btn-primary btn-lg btn-block" style="background-color: #4B8CA6; border: none;
+                    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+                    onMouseOver="this.style.background = '#A7D9D9'" onMouseOut="this.style.background = '#4B8CA6'" type="submit">Save</button>
         </form>
- 
+    </div>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
@@ -101,6 +96,6 @@
             }, false)
         })()
     </script> 
-        
+
 </t:pageTemplate>
-            
+
