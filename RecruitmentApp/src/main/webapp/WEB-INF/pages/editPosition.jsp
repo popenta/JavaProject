@@ -31,8 +31,14 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <div class="input-group">
-                        <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: none;">Departament</span>
-                        <input type="text" class="form-control" id="departament" name="departament" placeholder="Departament" value="${position.departament}" required>
+                         <select class="custom-select d-block w-100" id="departament" name="departament" required>
+                        <option value="">Alege departament</option>
+                        <option value="GBA">GBA</option>
+                        <option value="GBC">GBC</option>
+                        <option value="MSA">MSA</option>
+                        <option value="MNG">MNG</option>
+
+                    </select>
                     </div>
                     <div class="invalid-feedback">
                         Department is required.
