@@ -122,7 +122,7 @@ public class AddCandidate extends HttpServlet {
         }
 
         if (pd1.getNrPersoane() == ctAdd) {
-            positionBean.updateStareDeactivate(pd1.getId());
+            positionBean.updateStareInactive(pd1.getId());
         }
 
         response.sendRedirect(request.getContextPath() + "/Candidates");
