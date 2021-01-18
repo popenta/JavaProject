@@ -8,6 +8,7 @@ package com.recruit.recruitmentapp.servlet;
 import com.recruit.recruitmentapp.ejb.PositionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
@@ -21,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alex
  */
-
+@DeclareRoles({"DirectorDepRol", "DirectorGeneralRol", "DirectorHrRol", "RecruiterRol"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"DirectorDepRol", "DirectorGeneralRol", "DirectorHrRol", "RecruiterRol"}))
 @WebServlet(name = "AddPosition", urlPatterns = {"/AddPosition"})
 public class AddPosition extends HttpServlet {
 

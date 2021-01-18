@@ -11,6 +11,7 @@ import com.recruit.recruitmentapp.util.PasswordUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
@@ -24,7 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alex
  */
-
+@DeclareRoles({"DirectorGeneralRol", "AdminAplicatieRol"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"DirectorGeneralRol", "AdminAplicatieRol"}))
 @WebServlet(name = "AddUser", urlPatterns = {"/AddUser"})
 public class AddUser extends HttpServlet {
 

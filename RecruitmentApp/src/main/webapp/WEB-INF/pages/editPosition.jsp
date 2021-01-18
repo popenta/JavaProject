@@ -31,14 +31,14 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <div class="input-group">
-                         <select class="custom-select d-block w-100" id="departament" name="departament" required>
-                        <option value="">Alege departament</option>
-                        <option value="GBA">GBA</option>
-                        <option value="GBC">GBC</option>
-                        <option value="MSA">MSA</option>
-                        <option value="MNG">MNG</option>
+                        <select class="custom-select d-block w-100" id="departament" name="departament" required>
+                            <option value="">Alege departament</option>
+                            <option value="GBA">GBA</option>
+                            <option value="GBC">GBC</option>
+                            <option value="MSA">MSA</option>
+                            <option value="MNG">MNG</option>
 
-                    </select>
+                        </select>
                     </div>
                     <div class="invalid-feedback">
                         Department is required.
@@ -85,16 +85,15 @@
                         <div class="col-md-12 mb-3">
                             <div class="input-group">
                                 <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: none;">Cerinte</span>
-                                <input style="padding-bottom: 100px; padding-top: 20px;" type="text" class="form-control" id="cerinte" name="cerinte" placeholder="Cerinte" value="${position.cerinte}" disabled>
+                                <input style="padding-bottom: 100px; padding-top: 20px;" type="text" class="form-control" id="cerinte" name="cerinte" placeholder="Cerinte" value="${position.cerinte}" readonly>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <div class="input-group">
                                 <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: none;">Responsabilitati</span>
-                                <input style="padding-bottom: 100px; padding-top: 20px;" type="text" class="form-control" id="responsabilitati" name="responsabilitati" placeholder="Responsabilitati" value="${position.responsabilitati}" disabled>
+                                <input style="padding-bottom: 100px; padding-top: 20px;" type="text" class="form-control" id="responsabilitati" name="responsabilitati" placeholder="Responsabilitati" value="${position.responsabilitati}" readonly>
                             </div>
                         </div>
                     </div>

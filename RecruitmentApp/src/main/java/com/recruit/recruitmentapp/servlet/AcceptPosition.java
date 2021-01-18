@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alex
  */
+//@DeclareRoles({"DirectorDepRol", "DirectorGeneralRol", "DirectorHrRol", "RecruiterRol", "ViewerRol"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"DirectorGeneralRol"}))
 @WebServlet(name = "AcceptPosition", urlPatterns = {"/AcceptPosition"})
 public class AcceptPosition extends HttpServlet {
     
